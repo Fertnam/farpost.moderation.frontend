@@ -1,13 +1,13 @@
 import React from 'react'
-import Container from '../Container/Container'
+import Container from './components/Container/Container'
+import ModerationTape from './components/ModerationTape/ModerationTape'
 import styles from './App.module.scss'
 
 function App() {
     return (
         <div className={styles.app}>
             <Container>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Facilis, sequi.
+                <ModerationTape />
             </Container>
         </div>
     )

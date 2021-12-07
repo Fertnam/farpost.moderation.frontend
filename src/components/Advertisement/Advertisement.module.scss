@@ -1,0 +1,43 @@
+.advertisement {
+    color: var(--gray-200);
+    background-color: var(--white);
+
+    border-radius: 3px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .4);
+
+    & > .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: .75rem;
+
+        border-bottom: 1px solid var(--gray-100);
+
+        & > .info {
+            font-size: .9rem;
+
+            & > .id {
+                color: var(--blue);
+            }
+
+            & > .separator {
+                margin: 0 .75rem;
+            }
+        }
+
+        & > .user {
+            display: flex;
+            color: var(--blue);
+
+            &:before {
+                margin-right: .4rem;
+                content: url("./user.svg");
+            }
+        }
+    }
+
+    & > .content {
+        padding: 1.5rem 1rem;
+    }
+}
