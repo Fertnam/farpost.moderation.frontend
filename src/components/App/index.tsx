@@ -1,7 +1,7 @@
 import React from 'react'
-import Container from './components/Container/Container'
-import ModerationTape from './components/ModerationTape/ModerationTape'
-import styles from './App.module.scss'
+import Container from '../Container'
+import ModerationTape from '../ModerationTape'
+import styles from './styles.module.scss'
 
 function App() {
     return (

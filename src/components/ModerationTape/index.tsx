@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
-import Advertisement from 'components/Advertisement/Advertisement'
-import styles from './ModerationTape.module.scss'
+import React from 'react'
+import Advertisement from 'components/Advertisement'
+import styles from './styles.module.scss'
 
-const ModerationTape: FC = () => {
+function ModerationTape() {
     return (
         <div className={styles.moderationTape}>
             <Advertisement className={styles.item} />

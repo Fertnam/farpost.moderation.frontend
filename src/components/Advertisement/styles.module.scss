@@ -32,12 +32,34 @@
 
             &:before {
                 margin-right: .4rem;
-                content: url("./user.svg");
+                content: url("./assets/user.svg");
             }
         }
     }
 
     & > .content {
         padding: 1.5rem 1rem;
+
+        & > .title {
+            margin-bottom: 1.1rem;
+            font-size: 1.5rem;
+        }
+
+        & > .info {
+            display: flex;
+
+            & > .text {
+                flex: 1 1 auto;
+
+                padding-right: .9rem;
+                margin-right: 1.1rem;
+
+                line-height: 1.5;
+
+                border-right: 1px solid var(--gray-100);
+            }
+
+            & > .images {}
+        }
     }
 }
