@@ -1,62 +1,47 @@
 import React from 'react'
 import styles from './styles.module.scss'
-import image1 from './assets/images/1.png'
-import image2 from './assets/images/2.png'
+import { AdvertisementType } from '../../core/types/Advertisement'
 
-type Props = {} & React.HTMLAttributes<HTMLDivElement>
+type Props = {
+    advertisement: AdvertisementType
+}
 
-function Advertisement(props: Props) {
+function Advertisement({ advertisement }: Props) {
     return (
-        <div className={[styles.advertisement, props.className].join(' ')}>
+        <div className={styles.advertisement}>
             <div className={styles.header}>
                 <div className={styles.info}>
-                    <span className={styles.id}>34234234</span>
+                    <span className={styles.id}>{advertisement.id}</span>
                     <span className={styles.separator}>—</span>
-                    <span className={styles.date}>08:46, сегодня</span>
+                    <span className={styles.date}>
+                        {advertisement.publishDateString}
+                    </span>
                 </div>
 
-                <div className={styles.user}>otdelkadrov1</div>
+                <div className={styles.user}>{advertisement.ownerLogin}</div>
             </div>
 
             <div className={styles.content}>
-                <div className={styles.title}>UI/UX Designer (Владивосток)</div>
+                <div className={styles.title}>
+                    {advertisement.bulletinSubject}
+                </div>
 
                 <div className={styles.info}>
                     <div className={styles.text}>
-                        Мы — команда разработки. Используя современные
-                        технологии и стандарты мы создаем продукт для анализа
-                        рынка ценных бумаг и эффективного управления портфелем.
-                        Мы стремимся ежедневно добавлять в наш продукт значимый
-                        функционал, выполняя строгие требования к его качеству и
-                        быстродействию. Мы ценим честность, дисциплину и
-                        ответственность, сами планируем свою работу и организуем
-                        процесс, стремимся выдерживать сроки без переработок и
-                        вести работу прозрачно для коллег и заказчика. У нас
-                        есть веб-версия, мобильные приложения (android, ios) и
-                        телеграм-бот. Это разнообразие стоит на процессах TDD,
-                        Continious Integration и конечно же на нашей команде.
-                        Все работают удаленно (+- 2 часовых пояса от Москвы). К
-                        себе в команду мы ищем профессионала, который умеет
-                        решать задачи пользователя в веб и мобильных девайсах.
-                        Еще встречаются такие названия этой роли: Продуктовый-
-                        дизайнер, UI / UX Designer, Дизайнер Интерфейсов,
-                        Проектировщик интерфейсов и т.п., чтобы все эти слова не
-                        значили.
+                        {advertisement.bulletinText}
                     </div>
 
-                    <div className={styles.images}>
-                        <img
-                            src={image1}
-                            alt="Объявление"
-                            className={styles.item}
-                        />
-
-                        <img
-                            src={image2}
-                            alt="Объявление"
-                            className={styles.item}
-                        />
-                    </div>
+                    {advertisement.bulletinImagees.length > 0 && (
+                        <div className={styles.images}>
+                            {advertisement.bulletinImagees.map((image) => (
+                                <img
+                                    src={image}
+                                    alt="Объявление"
+                                    className={styles.item}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
