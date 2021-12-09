@@ -32,15 +32,18 @@ function Advertisement({ advertisement }: Props) {
                     </div>
 
                     {advertisement.bulletinImagees.length > 0 && (
-                        <div className={styles.images}>
-                            {advertisement.bulletinImagees.map((image) => (
-                                <img
-                                    src={image}
-                                    alt="Объявление"
-                                    className={styles.item}
-                                />
-                            ))}
-                        </div>
+                        <>
+                            <div className={styles.separator} />
+                            <div className={styles.images}>
+                                {advertisement.bulletinImagees.map((image) => (
+                                    <img
+                                        src={image}
+                                        alt="Объявление"
+                                        className={styles.item}
+                                    />
+                                ))}
+                            </div>
+                        </>
                     )}
                 </div>
             </div>
