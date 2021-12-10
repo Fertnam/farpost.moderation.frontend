@@ -3,4 +3,8 @@
     flex-direction: column;
 
     gap: 2rem;
+
+    & > .item.active {
+        outline: 1px solid var(--blue);
+    }
 }
