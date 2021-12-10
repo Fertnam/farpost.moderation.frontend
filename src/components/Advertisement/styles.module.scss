@@ -23,6 +23,7 @@
 
             & > .separator {
                 margin: 0 .75rem;
+                user-select: none;
             }
         }
 
@@ -60,6 +61,8 @@
                 width: 1px;
 
                 background-color: var(--gray-100);
+
+                user-select: none;
             }
 
             & > .images {
