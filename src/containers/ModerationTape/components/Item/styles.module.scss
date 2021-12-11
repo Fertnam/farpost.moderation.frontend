@@ -1,0 +1,5 @@
+.moderationTapeItem {
+    &.active, &:hover {
+        outline: 1px solid var(--blue);
+    }
+}

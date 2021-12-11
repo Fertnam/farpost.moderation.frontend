@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Advertisement from '../Advertisement'
+import ModerationTapeItem from './components/Item'
+import ModerationTapeManual from './components/Manual'
 import styles from './styles.module.scss'
 import { AdvertisementType } from '../../core/types/Advertisement'
 
@@ -157,41 +158,16 @@ function ModerationTape() {
         <div className={styles.moderationTape}>
             <div className={styles.items}>
                 {advertisements.map((advertisement) => (
-                    <div
-                        className={
-                            activeAdvertisement?.id === advertisement.id
-                                ? [styles.item, styles.active].join(' ')
-                                : styles.item
-                        }
+                    <ModerationTapeItem
+                        advertisement={advertisement}
+                        active={activeAdvertisement?.id === advertisement.id}
                         key={advertisement.id}
                         onClick={() => setActiveAdvertisement(advertisement)}
-                    >
-                        <Advertisement advertisement={advertisement} />
-                    </div>
+                    />
                 ))}
             </div>
 
-            <div className={styles.help}>
-                <div className={[styles.item, styles.green].join(' ')}>
-                    <span className={styles.action}>Одобрить</span>
-                    <span className={styles.key}>Пробел</span>
-                </div>
-
-                <div className={[styles.item, styles.orange].join(' ')}>
-                    <span className={styles.action}>Отклонить</span>
-                    <span className={styles.key}>Del</span>
-                </div>
-
-                <div className={[styles.item, styles.blue].join(' ')}>
-                    <span className={styles.action}>Эскалация</span>
-                    <span className={styles.key}>Shift+Enter</span>
-                </div>
-
-                <div className={styles.item}>
-                    <span className={styles.action}>Сохранить</span>
-                    <span className={styles.key}>F7</span>
-                </div>
-            </div>
+            <ModerationTapeManual />
         </div>
     )
 }
