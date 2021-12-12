@@ -16,11 +16,10 @@ type Props = {
 function ModerationTapeManualItem(props: Props) {
     return (
         <div
-            className={
-                props.color
-                    ? [styles.manualItem, styles[props.color]].join(' ')
-                    : styles.manualItem
-            }
+            className={[
+                styles.manualItem,
+                props.color ? styles[props.color] : null,
+            ].join(' ')}
         >
             <span className={styles.action}>{props.action}</span>
             <span className={styles.hotKey}>{props.hotKey}</span>
