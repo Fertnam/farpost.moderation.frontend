@@ -1,22 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { AdvertisementType } from 'core/types/Advertisement'
+import { useCallback, useEffect, useState } from 'react'
 
-type ReturnTuple = [
-    AdvertisementType[],
-    AdvertisementType | undefined,
-    React.Dispatch<React.SetStateAction<AdvertisementType | undefined>>
-]
+type ModerationTapeHookResult<T> = {
+    items: T[]
+    activeItem: T | undefined
+    setActiveItem: (item: T) => void
+}
 
-function useModerationTape(): ReturnTuple {
-    const [advertisements, setAdvertisements] = useState<AdvertisementType[]>(
-        []
-    )
+function useModerationTape<T>(): ModerationTapeHookResult<T> {
+    const [items, setItems] = useState<T[]>([])
+    const [activeItem, setActiveItemRaw] = useState<T>()
 
-    const [activeAdvertisement, setActiveAdvertisement] =
-        useState<AdvertisementType>()
+    const setActiveItem = useCallback((item: T) => setActiveItemRaw(item), [])
 
-    useEffect(function fetchAdvertisements() {
-        setAdvertisements([
+    useEffect(function fetchItems() {
+        setItems([
             {
                 id: 1234567,
                 publishDate: 1234567,
@@ -37,127 +34,21 @@ function useModerationTape(): ReturnTuple {
                 bulletinText: 'Текст объявления ...',
                 bulletinImagees: [],
             },
-            {
-                id: 3242324,
-                publishDate: 2342343,
-                publishDateString: '12:46, сегодня',
-                ownerId: 44334,
-                ownerLogin: 'Sashok',
-                bulletinSubject: 'Web-программист',
-                bulletinText: 'Текст объявления ...',
-                bulletinImagees: [],
-            },
-            {
-                id: 32423214,
-                publishDate: 2342343,
-                publishDateString: '12:46, сегодня',
-                ownerId: 44334,
-                ownerLogin: 'Sashok',
-                bulletinSubject: 'Web-программист',
-                bulletinText: 'Текст объявления ...',
-                bulletinImagees: [],
-            },
-            {
-                id: 3242234,
-                publishDate: 2342343,
-                publishDateString: '12:46, сегодня',
-                ownerId: 44334,
-                ownerLogin: 'Sashok',
-                bulletinSubject: 'Web-программист',
-                bulletinText: 'Текст объявления ...',
-                bulletinImagees: [],
-            },
-            {
-                id: 3242346,
-                publishDate: 2342343,
-                publishDateString: '12:46, сегодня',
-                ownerId: 44334,
-                ownerLogin: 'Sashok',
-                bulletinSubject: 'Web-программист',
-                bulletinText: 'Текст объявления ...',
-                bulletinImagees: [],
-            },
-            {
-                id: 3284234,
-                publishDate: 2342343,
-                publishDateString: '12:46, сегодня',
-                ownerId: 44334,
-                ownerLogin: 'Sashok',
-                bulletinSubject: 'Web-программист',
-                bulletinText: 'Текст объявления ...',
-                bulletinImagees: [],
-            },
-            {
-                id: 32423466,
-                publishDate: 2342343,
-                publishDateString: '12:46, сегодня',
-                ownerId: 44334,
-                ownerLogin: 'Sashok',
-                bulletinSubject: 'Web-программист',
-                bulletinText: 'Текст объявления ...',
-                bulletinImagees: [],
-            },
-            {
-                id: 32423444,
-                publishDate: 2342343,
-                publishDateString: '12:46, сегодня',
-                ownerId: 44334,
-                ownerLogin: 'Sashok',
-                bulletinSubject: 'Web-программист',
-                bulletinText: 'Текст объявления ...',
-                bulletinImagees: [],
-            },
-            {
-                id: 32421134,
-                publishDate: 2342343,
-                publishDateString: '12:46, сегодня',
-                ownerId: 44334,
-                ownerLogin: 'Sashok',
-                bulletinSubject: 'Web-программист',
-                bulletinText: 'Текст объявления ...',
-                bulletinImagees: [],
-            },
-            {
-                id: 324544234,
-                publishDate: 2342343,
-                publishDateString: '12:46, сегодня',
-                ownerId: 44334,
-                ownerLogin: 'Sashok',
-                bulletinSubject: 'Web-программист',
-                bulletinText: 'Текст объявления ...',
-                bulletinImagees: [],
-            },
-            {
-                id: 324342234,
-                publishDate: 2342343,
-                publishDateString: '12:46, сегодня',
-                ownerId: 44334,
-                ownerLogin: 'Sashok',
-                bulletinSubject: 'Web-программист',
-                bulletinText: 'Текст объявления ...',
-                bulletinImagees: [],
-            },
-            {
-                id: 32423453454,
-                publishDate: 2342343,
-                publishDateString: '12:46, сегодня',
-                ownerId: 44334,
-                ownerLogin: 'Sashok',
-                bulletinSubject: 'Web-программист',
-                bulletinText: 'Текст объявления ...',
-                bulletinImagees: [],
-            },
-        ])
+        ] as unknown as T[])
     }, [])
 
     useEffect(
-        function focusToFirstAdvertisement() {
-            setActiveAdvertisement(advertisements[0])
+        function focusToFirstItem() {
+            setActiveItem(items[0])
         },
-        [advertisements]
+        [items]
     )
 
-    return [advertisements, activeAdvertisement, setActiveAdvertisement]
+    return {
+        items,
+        activeItem,
+        setActiveItem,
+    }
 }
 
 export default useModerationTape

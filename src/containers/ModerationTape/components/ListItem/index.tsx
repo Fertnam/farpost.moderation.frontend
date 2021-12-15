@@ -5,22 +5,15 @@ import { AdvertisementType } from 'core/types/Advertisement'
 
 type Props = {
     advertisement: AdvertisementType
-    active: boolean
     onClick: () => void
 }
 
-function ModerationTapeItem(props: Props) {
+function ModerationTapeListItem(props: Props) {
     return (
-        <div
-            className={[
-                styles.moderationTapeItem,
-                props.active ? styles.active : null,
-            ].join(' ')}
-            onClick={props.onClick}
-        >
+        <div className={styles.listItem} onClick={props.onClick}>
             <Advertisement advertisement={props.advertisement} />
         </div>
     )
 }
 
-export default ModerationTapeItem
+export default ModerationTapeListItem
