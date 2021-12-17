@@ -1,21 +1,28 @@
-import React, { useCallback, useMemo } from 'react'
+import React from 'react'
 import ModerationTapeList from './components/List'
+import ModerationTapeListItem from './components/ListItem'
 import ModerationTapeManual from './components/Manual'
 import styles from './styles.module.scss'
 import useModerationTape from 'core/hooks/useModerationTape'
 import { AdvertisementType } from 'core/types/Advertisement'
 
 function ModerationTape() {
-    const { items, activeItem, setActiveItem } =
+    const [advertisements, activeAdvertisement, setActiveAdvertisement] =
         useModerationTape<AdvertisementType>()
 
     return (
         <div className={styles.moderationTape}>
-            {activeItem?.id}
+            {activeAdvertisement?.id}
 
             <ModerationTapeList
-                advertisements={items}
-                onListItemClick={setActiveItem}
+                items={advertisements}
+                renderItem={(advertisement: AdvertisementType) => (
+                    <ModerationTapeListItem
+                        key={advertisement.id}
+                        advertisement={advertisement}
+                        onClick={() => setActiveAdvertisement(advertisement)}
+                    />
+                )}
             />
 
             <ModerationTapeManual />

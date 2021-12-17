@@ -1,16 +1,10 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
-type ModerationTapeHookResult<T> = {
-    items: T[]
-    activeItem: T | undefined
-    setActiveItem: (item: T) => void
-}
+type ModerationTapeHookResult<T> = [T[], T | undefined, (item: T) => void]
 
 function useModerationTape<T>(): ModerationTapeHookResult<T> {
     const [items, setItems] = useState<T[]>([])
-    const [activeItem, setActiveItemRaw] = useState<T>()
-
-    const setActiveItem = useCallback((item: T) => setActiveItemRaw(item), [])
+    const [activeItem, setActiveItem] = useState<T>()
 
     useEffect(function fetchItems() {
         setItems([
@@ -38,17 +32,13 @@ function useModerationTape<T>(): ModerationTapeHookResult<T> {
     }, [])
 
     useEffect(
-        function focusToFirstItem() {
+        function setFirstItemActive() {
             setActiveItem(items[0])
         },
         [items]
     )
 
-    return {
-        items,
-        activeItem,
-        setActiveItem,
-    }
+    return [items, activeItem, setActiveItem]
 }
 
 export default useModerationTape

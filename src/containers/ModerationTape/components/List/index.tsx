@@ -1,24 +1,12 @@
 import React from 'react'
-import ModerationTapeListItem from '../ListItem'
-import { AdvertisementType } from 'core/types/Advertisement'
 
-type Props = {
-    advertisements: AdvertisementType[]
-    onListItemClick: (advertisement: AdvertisementType) => void
+type Props<T> = {
+    items: T[]
+    renderItem: (item: T) => React.ReactNode
 }
 
-function ModerationTapeList({ advertisements, onListItemClick }: Props) {
-    return (
-        <div>
-            {advertisements.map((advertisement) => (
-                <ModerationTapeListItem
-                    advertisement={advertisement}
-                    onClick={() => onListItemClick(advertisement)}
-                    key={advertisement.id}
-                />
-            ))}
-        </div>
-    )
+function ModerationTapeList<T extends any>(props: Props<T>) {
+    return <div>{props.items.map(props.renderItem)}</div>
 }
 
 export default ModerationTapeList
