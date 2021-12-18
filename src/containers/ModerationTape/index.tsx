@@ -1,27 +1,48 @@
 import React from 'react'
-import ModerationTapeList from './components/List'
-import ModerationTapeListItem from './components/ListItem'
+import List from 'components/List'
+import Advertisement from 'components/Advertisement'
 import ModerationTapeManual from './components/Manual'
-import styles from './styles.module.scss'
 import useModerationTape from 'core/hooks/useModerationTape'
 import { AdvertisementType } from 'core/types/Advertisement'
+import styles from './styles.module.scss'
 
 function ModerationTape() {
     const [advertisements, activeAdvertisement, setActiveAdvertisement] =
-        useModerationTape<AdvertisementType>()
+        useModerationTape<AdvertisementType>((setItems) =>
+            setItems([
+                {
+                    id: 1234567,
+                    publishDate: 1234567,
+                    publishDateString: '08:46, сегодня',
+                    ownerId: 1234567,
+                    ownerLogin: 'Fertnam',
+                    bulletinSubject: 'UI/UX Designer (Владивосток)',
+                    bulletinText: 'Текст объявления ...',
+                    bulletinImagees: [],
+                },
+                {
+                    id: 324234,
+                    publishDate: 2342343,
+                    publishDateString: '12:46, сегодня',
+                    ownerId: 44334,
+                    ownerLogin: 'Sashok',
+                    bulletinSubject: 'Web-программист',
+                    bulletinText: 'Текст объявления ...',
+                    bulletinImagees: [],
+                },
+            ])
+        )
 
     return (
         <div className={styles.moderationTape}>
             {activeAdvertisement?.id}
 
-            <ModerationTapeList
+            <List
                 items={advertisements}
-                renderItem={(advertisement: AdvertisementType) => (
-                    <ModerationTapeListItem
-                        key={advertisement.id}
-                        advertisement={advertisement}
-                        onClick={() => setActiveAdvertisement(advertisement)}
-                    />
+                activeItem={activeAdvertisement}
+                onListItemClick={(item) => setActiveAdvertisement(item)}
+                renderItem={(item: AdvertisementType) => (
+                    <Advertisement advertisement={item} />
                 )}
             />
 
