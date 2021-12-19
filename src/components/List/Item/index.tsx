@@ -4,6 +4,7 @@ import styles from './styles.module.scss'
 
 type Props = {
     active: boolean
+    onClick: () => void
     children: React.ReactNode
 }
 
@@ -12,10 +13,9 @@ function ListItem(props: Props) {
         <div
             className={classNames([
                 styles.listItem,
-                {
-                    [styles.active]: props.active,
-                },
+                { [styles.active]: props.active },
             ])}
+            onClick={props.onClick}
         >
             {props.children}
         </div>

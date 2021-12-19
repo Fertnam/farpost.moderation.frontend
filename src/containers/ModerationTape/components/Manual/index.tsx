@@ -4,7 +4,7 @@ import styles from './styles.module.scss'
 
 function ModerationTapeManual() {
     return (
-        <div className={styles.manual}>
+        <div className={styles.moderationTapeManual}>
             <ModerationTapeManualItem
                 action="Одобрить"
                 hotKey="Пробел"

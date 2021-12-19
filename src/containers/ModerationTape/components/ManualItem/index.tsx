@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames'
 import styles from './styles.module.scss'
 
 export enum Colors {
@@ -16,10 +17,10 @@ type Props = {
 function ModerationTapeManualItem(props: Props) {
     return (
         <div
-            className={[
-                styles.manualItem,
+            className={classNames([
+                styles.moderationTapeManualItem,
                 props.color ? styles[props.color] : null,
-            ].join(' ')}
+            ])}
         >
             <span className={styles.action}>{props.action}</span>
             <span className={styles.hotKey}>{props.hotKey}</span>
