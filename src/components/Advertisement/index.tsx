@@ -1,6 +1,6 @@
 import React from 'react'
+import AdvertisementType from 'core/types/Advertisement'
 import styles from './styles.module.scss'
-import { AdvertisementType } from 'core/types/Advertisement'
 
 type Props = {
     advertisement: AdvertisementType

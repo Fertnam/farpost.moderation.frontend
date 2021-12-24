@@ -1,4 +1,4 @@
-export type AdvertisementType = {
+type AdvertisementType = {
     id: number
     publishDate: number
     publishDateString: string
@@ -8,3 +8,5 @@ export type AdvertisementType = {
     bulletinText: string
     bulletinImagees: string[]
 }
+
+export default AdvertisementType
