@@ -4,26 +4,28 @@ import styles from './styles.module.scss'
 
 function ModerationTapeManual() {
     return (
-        <div className={styles.moderationTapeManual}>
-            <ModerationTapeManualItem
-                action="Одобрить"
-                hotKey="Пробел"
-                color={Colors.GREEN}
-            />
+        <div>
+            <div className={styles.moderationTapeManual}>
+                <ModerationTapeManualItem
+                    action="Одобрить"
+                    hotKey="Пробел"
+                    color={Colors.GREEN}
+                />
 
-            <ModerationTapeManualItem
-                action="Отклонить"
-                hotKey="Del"
-                color={Colors.ORANGE}
-            />
+                <ModerationTapeManualItem
+                    action="Отклонить"
+                    hotKey="Del"
+                    color={Colors.ORANGE}
+                />
 
-            <ModerationTapeManualItem
-                action="Эскалация"
-                hotKey="Shift+Enter"
-                color={Colors.BLUE}
-            />
+                <ModerationTapeManualItem
+                    action="Эскалация"
+                    hotKey="Shift+Enter"
+                    color={Colors.BLUE}
+                />
 
-            <ModerationTapeManualItem action="Сохранить" hotKey="F7" />
+                <ModerationTapeManualItem action="Сохранить" hotKey="F7" />
+            </div>
         </div>
     )
 }

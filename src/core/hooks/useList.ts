@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react'
 
-type ListHookFetchItemsCallback<T> = (setItems: (items: T[]) => void) => void
-type ListHookResult<T> = [T[], T | undefined, (item: T) => void]
+type ListHookResult<T> = [
+    T[],
+    (items: T[]) => void,
+    T | undefined,
+    (item: T) => void
+]
 
-function useList<T>(
-    fetchItems: ListHookFetchItemsCallback<T>
-): ListHookResult<T> {
+function useList<T>(): ListHookResult<T> {
     const [items, setItems] = useState<T[]>([])
     const [activeItem, setActiveItem] = useState<T>()
-
-    useEffect(() => fetchItems(setItems), [])
 
     useEffect(
         function setFirstItemActive() {
@@ -18,7 +18,7 @@ function useList<T>(
         [items]
     )
 
-    return [items, activeItem, setActiveItem]
+    return [items, setItems, activeItem, setActiveItem]
 }
 
 export default useList
