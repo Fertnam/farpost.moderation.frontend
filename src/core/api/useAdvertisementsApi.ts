@@ -7,7 +7,7 @@ type AdvertisementsApiResult = {
 
 function useAdvertisementsApi(): AdvertisementsApiResult {
     async function fetchAdvertisements(page: number) {
-        const url = 'http://localhost:8005/api/advertisements'
+        const url = `${process.env.REACT_APP_API}/advertisements`
         const { data } = await axios.get<AdvertisementType[]>(url)
 
         return data
